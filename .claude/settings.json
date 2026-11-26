@@ -38,6 +38,18 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks-active/scripts/watch/check-setup.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   }
 }

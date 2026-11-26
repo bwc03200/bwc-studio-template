@@ -25,6 +25,22 @@ Stripe, Playwright (E2E), bun (package manager) — adapte selon le projet
 - `docs/ECC-README.md`, `docs/ECC-shortform-guide.md`, `docs/ECC-security-guide.md`
   — doc de référence ECC complète
 
+**Skill `watch` (depuis claude-video — github.com/bradautomates/claude-video, MIT) :**
+- `.claude/skills/watch/` — donne à Claude la capacité de "regarder" une vidéo
+  (URL YouTube/TikTok/Vimeo ou fichier local) : téléchargement, extraction de
+  frames, transcription, puis analyse par Claude. Invoquer via le skill `watch`.
+- Deux moteurs : `gemini` (recommandé, nécessite une clé `GEMINI_API_KEY`
+  gratuite sur https://aistudio.google.com/apikey) ou `local` (ffmpeg +
+  yt-dlp + WhisperX/Groq/OpenAI en fallback, 100% local si besoin).
+- Prérequis machine : Python 3.10+, ffmpeg/ffprobe, yt-dlp. Premier appel =
+  setup interactif (`scripts/setup.py`) qui demande le moteur à utiliser.
+- Un hook `SessionStart` (`.claude/hooks-active/scripts/watch/check-setup.sh`,
+  lecture seule, toujours exit 0) avertit si Python/la config manque, sans
+  jamais bloquer la session.
+- Ne génère PAS de skill permanent à partir d'une vidéo automatiquement —
+  c'est un outil d'analyse ponctuelle (malgré ce que certaines vidéos TikTok
+  en disent).
+
 ---
 
 ## Session Start Protocol ⚡
