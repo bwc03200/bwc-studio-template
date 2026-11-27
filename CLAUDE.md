@@ -41,6 +41,28 @@ Stripe, Playwright (E2E), bun (package manager) — adapte selon le projet
   c'est un outil d'analyse ponctuelle (malgré ce que certaines vidéos TikTok
   en disent).
 
+**Skills `superpowers` (depuis obra/superpowers — github.com/obra/superpowers,
+MIT, Jesse Vincent) :**
+- 15 skills copiés individuellement dans `.claude/skills/` : `brainstorming`,
+  `writing-plans`, `executing-plans`, `test-driven-development`,
+  `systematic-debugging`, `using-superpowers`, `writing-skills`,
+  `subagent-driven-development`, `dispatching-parallel-agents`,
+  `using-git-worktrees`, `finishing-a-development-branch`,
+  `requesting-code-review`, `receiving-code-review`,
+  `verification-before-completion`, `diagnosing-superpowers`.
+- Bibliothèque de méthodes de travail (pas de stack technique précise) :
+  comment planifier, TDD, déboguer systématiquement, faire des code reviews,
+  dispatcher des agents en parallèle, etc. Complète les skills ECC existants
+  plutôt que de les remplacer (noms distincts, pas de conflit de fichiers).
+- Un hook `SessionStart` (`.claude/hooks-active/scripts/superpowers/session-start`,
+  lecture seule, injecte juste le contenu du skill `using-superpowers` en
+  contexte, toujours exit 0) est présent mais **n'est garanti de fonctionner
+  qu'avec une vraie installation plugin** (`/plugin marketplace add
+  obra/superpowers-marketplace`) : copié en skill de projet brut comme ici,
+  il peut ne pas injecter le contexte automatiquement au démarrage (variable
+  `CLAUDE_PLUGIN_ROOT` absente). Les 15 skills restent utilisables normalement
+  via l'outil Skill, avec ou sans ce hook.
+
 ---
 
 ## Session Start Protocol ⚡
